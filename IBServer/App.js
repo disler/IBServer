@@ -8,7 +8,7 @@ var server = http.createServer(),
     bayeux = new faye.NodeAdapter({mount: '/faye', timeout: 45});
 
 bayeux.on('handshake', function(clientId) {
-  console.log(`handshake(clientId : ${clientId})`);
+    console.log(`handshake(clientId : ${clientId})`);
 })
 
 bayeux.on('disconnect', function(clientId) {
@@ -16,15 +16,15 @@ bayeux.on('disconnect', function(clientId) {
 })
 
 bayeux.on('subscribe', function(clientId, channel) {
-  console.log(`subscribe(clientId : ${clientId}, channel : ${channel}): `);
+    console.log(`subscribe(clientId : ${clientId}, channel : ${channel}): `);
 })
 
 bayeux.on('unsubscribe', function(clientId, channel) {
-  console.log(`unsubscribe(clientId : ${clientId}, channel : ${channel}): `);
+    console.log(`unsubscribe(clientId : ${clientId}, channel : ${channel}): `);
 })
 
 bayeux.on('publish', function(clientId, channel, data) {
-  console.log(`publish(clientId : ${clientId}, channel : ${channel}, data : ${data}): `);
+    console.log(`publish(clientId : ${clientId}, channel : ${channel}, data : ${data}): `);
 })
 
 bayeux.attach(server);
@@ -34,7 +34,7 @@ console.log(`\n\nServer running on port ${port}\n\n`);
 
 
 
-/*		Server client 			*/
+/*		    Server client 			*/
 var serverClient = new faye.Client(`http://localhost:${port}/faye`);
 serverClient.publish("/start", {sData:"hello"});
 serverClient.subscribe(`/start`, function(o)
@@ -44,6 +44,8 @@ serverClient.subscribe(`/start`, function(o)
 
 serverClient.subscribe("/message/send", function(o)
 {
-	const sMessage = o.sData;
-	serverClient.publish("/message/receive", {sData : sMessage});
+    const sMessage = o.sData;
+    const sGUID = o.sGUID;
+    const sWho = o.sWho
+    serverClient.publish("/message/receive", {sData : sMessage, sGUID:sGUID, sWho:sWho});
 })
