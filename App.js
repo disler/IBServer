@@ -47,5 +47,6 @@ serverClient.subscribe("/message/send", function(o)
     const sMessage = o.sData;
     const sGUID = o.sGUID;
     const sWho = o.sWho
+    console.log(`\n/message/send -> User: ${sWho}, sent: ${sMessage}\n`);
     serverClient.publish("/message/receive", {sData : sMessage, sGUID:sGUID, sWho:sWho});
 })
