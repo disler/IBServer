@@ -1,2 +1,0 @@
-node App.js
-pause
