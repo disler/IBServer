@@ -13,9 +13,10 @@
   "scripts": {
     "start": "node App.js"
   },
-  "keywords": [ ],
+  "keywords": [],
   "dependencies": {
-    "electron-debug": "^1.0.0"
+    "electron-debug": "^1.0.0",
+    "faye": "^1.2.3"
   },
-  "devDependencies": { },
+  "devDependencies": {}
 }
