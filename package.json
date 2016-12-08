@@ -16,7 +16,8 @@
   "keywords": [],
   "dependencies": {
     "electron-debug": "^1.0.0",
-    "faye": "^1.2.3"
+    "faye": "^1.2.3",
+    "mongodb": "^2.2.12"
   },
   "devDependencies": {}
 }
